@@ -1,8 +1,9 @@
 library(animint2)
 WorldBank1975 <- subset(WorldBank, year==1975)
+WorldBankBefore1975 <- subset(WorldBank, 1970 <= year & year <= 1975)
 income.colors <- 
   c("#422680", "#341671", "#280659", "#660f56", "#ae2d68", "#f54952")
-names(region.colors) <- levels(WorldBank$region)
+names(income.colors) <- levels(WorldBank$rincome)
 scatter <- ggplot()+
   scale_color_manual(values=income.colors)+
   geom_point(
@@ -15,4 +16,4 @@ two.layers <- scatter+
     color=income,
     group=country),
     data=WorldBankBefore1975)
-(viz.two.layers <- animint(two.layers,out.dir="ghgh"))
+print((viz.two.layers <- animint(two.layers,out.dir="easy-test-solution1")))
