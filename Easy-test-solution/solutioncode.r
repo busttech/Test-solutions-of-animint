@@ -3,7 +3,7 @@ WorldBank1975 <- subset(WorldBank, year==1975)
 WorldBankBefore1975 <- subset(WorldBank, 1970 <= year & year <= 1975)
 income.colors <- 
   c("#422680", "#341671", "#280659", "#660f56", "#ae2d68", "#f54952")
-names(income.colors) <- levels(WorldBank$rincome)
+names(income.colors) <- levels(WorldBank$income)
 scatter <- ggplot()+
   scale_color_manual(values=income.colors)+
   geom_point(
