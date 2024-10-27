@@ -16,4 +16,4 @@ two.layers <- scatter+
     color=income,
     group=country),
     data=WorldBankBefore1975)
-print((viz.two.layers <- animint(two.layers,out.dir="easy-test-solution1")))
+(viz.two.layers <- animint(two.layers,out.dir="easy-test-solution1"))
