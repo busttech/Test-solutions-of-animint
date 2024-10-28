@@ -2,7 +2,8 @@ library(animint2)
 WorldBank1975 <- subset(WorldBank, year==1975)
 WorldBankBefore1975 <- subset(WorldBank, 1970 <= year & year <= 1975)
 income.colors <- 
-  c("#422680", "#341671", "#280659", "#660f56", "#ae2d68", "#f54952")
+  c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33")
+WorldBank$income = factor(WorldBank$income,levels = c("High income: nonOECD","High income: OECD","Upper middle income","Lower middle income","Low income","Not classified"))
 names(income.colors) <- levels(WorldBank$income)
 scatter <- ggplot()+
   scale_color_manual(values=income.colors)+
