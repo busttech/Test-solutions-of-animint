@@ -1,4 +1,4 @@
-fill	count	prop	showSelectedlegendfill	clickSelects	group	ymin	ymax	xmin	xmax
-#F8766D	43	1	Head	Head	1	0	43	0.55	1.45
-#00BA38	48	1	Tail	Tail	2	0	48	1.55	2.45
-#619CFF	9	1	Stand	Stand	3	0	9	2.55	3.45
+fill	count	prop	showSelectedlegendfill	group	ymin	ymax	xmin	xmax
+#F8766D	43	1	Head	1	0	43	0.55	1.45
+#00BA38	45	1	Tail	2	0	45	1.55	2.45
+#619CFF	12	1	Stand	3	0	12	2.55	3.45
