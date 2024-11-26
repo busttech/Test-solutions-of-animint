@@ -1,4 +1,4 @@
-colour	x	y	showSelectedlegendcolour	showSelected1	fill
+colour	x	y	showSelectedlegendcolour	clickSelects	fill
 #00BA38	1	0	Tail	1	#00BA38
 #00BA38	2	0	Tail	2	#00BA38
 #00BA38	3	0	Tail	3	#00BA38

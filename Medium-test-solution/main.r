@@ -1,50 +1,62 @@
 # Load necessary libraries
-library(ggplot2)
+library(ggplot2) 
 library(animint2)
-library(dplyr)
+library(dplyr)   
 
-# Coin flip simulation setup
-faces <- c("Head", "Tail", "Stand")
-prob <- c(0.45, 0.45, 0.1)
-n_tosses <- 100
+# Step 1: Set up coin flip simulation
+faces <- c("Head", "Tail", "Stand")  
+prob <- c(0.45, 0.45, 0.1)          
+n_tosses <- 100                     
 
-# Simulate coin flips
-flips <- sample(faces, size = n_tosses, replace = TRUE, prob = prob)
+# Step 2: Simulate coin flips and store the results in a data frame
+flips <- sample(faces, size = n_tosses, replace = TRUE, prob = prob)  
 flip_data <- data.frame(
-  toss = seq_len(n_tosses),
-  result = flips
+  toss = seq_len(n_tosses),  
+  result = flips             
 )
 
-# Calculate cumulative frequencies
+# Step 3: Calculate cumulative statistics
 flip_data <- flip_data %>%
-  group_by(result) %>%
-  mutate(freq = row_number()) %>%
-  ungroup() %>%
-  mutate(cumulative = cumsum(result == "Head") / toss)
+  group_by(result) %>%                       
+  mutate(freq = row_number()) %>%            
+  ungroup() %>%                              
+  mutate(cumulative = cumsum(result == "Head") / toss)  
 
-# Convert result to a factor
-flip_data$result <- factor(flip_data$result, levels = faces)
+# Step 4: Convert result column to a factor with defined levels
+flip_data$result <- factor(flip_data$result, levels = faces)  
 
-# Bar plot: Frequency of each face of the coin (with clickSelects for interaction)
+# Step 5: Create a bar plot for the frequency of outcomes
 bar_plot <- ggplot(flip_data, aes(x = result, fill = result)) +
-  geom_bar(stat = "count", clickSelects = "result") + # Use clickSelects as a parameter
-  geom_text(stat = "count", aes(label = ..count..), vjust = -0.5) +
-  labs(title = "Coin Flip Frequencies", x = "Face", y = "Count")
+  geom_bar(stat = "count", clickSelects = "toss") +          
+  geom_text(stat = "count", aes(label = ..count..), vjust = -0.5) + 
+  labs(title = "Coin Flip Frequencies (Interactive)", 
+       x = "Face", 
+       y = "Count")  
 
-# Line plot: Cumulative frequency over tosses (animated over toss)
-# Line plot: Cumulative frequency over tosses (animated over toss, with tallrect for time selection)
+# Step 6: Create a line plot for cumulative frequency over tosses
 line_plot <- ggplot(flip_data, aes(x = toss, y = cumulative, color = result, group = result)) +
-  geom_line(size = 1) +
-  geom_point(size = 2, showSelected = "toss") + # Correct usage as a parameter
-  geom_tallrect(aes(xmin = toss - 0.5, xmax = toss + 0.5), alpha = 0.2, showSelected = "toss") + # Correct usage in tallrect
-  labs(title = "Cumulative Frequency Over Tosses", x = "Toss Number", y = "Cumulative Frequency")
+  geom_line(size = 1) +                                       
+  geom_point(size = 2, showSelected = "toss") +               
+  geom_tallrect(aes(xmin = toss - 0.5, xmax = toss + 0.5),   
+                alpha = 0.2, clickSelects = "toss") +         
+  labs(title = "Cumulative Frequency Over Tosses (Interactive)", 
+       x = "Toss Number", 
+       y = "Cumulative Frequency")  
 
-# List of ggplots for animation
+# Step 7: Create a scatter plot for toss number vs cumulative frequency
+scatter_plot <- ggplot(flip_data, aes(x = toss, y = cumulative, color = result)) +
+  geom_point(size = 2, clickSelects = "toss") +               
+  labs(title = "Scatterplot: Toss vs Cumulative Frequency", 
+       x = "Toss Number", 
+       y = "Cumulative Frequency")  
+
+# Step 8: Combine all plots into a list for animation
 plots <- list(
-  frequency = bar_plot,
+  frequency = bar_plot,         
   cumulative = line_plot,
-  time = list(variable = "toss", ms = 200) # Define animation interval
-)
+  scatter = scatter_plot,       
+  time = list(variable = "toss", ms = 200)  
 
-# Save animation to directory
-animint2dir(plots, out.dir = "coin_flip_animation")
+# Step 9: Save the animation to a directory
+animint2dir(plots, out.dir = "coin_flip_animation")  
+
