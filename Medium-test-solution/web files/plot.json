@@ -74,6 +74,7 @@
  "x": "toss",
 "y": "cumulative",
 "colour": "result",
+"group": "result",
 "showSelectedlegendcolour": "result" 
 },
 "params": {
@@ -85,13 +86,14 @@
  "colour": "rgb",
 "x": "numeric",
 "y": "numeric",
+"group": "character",
 "showSelectedlegendcolour": "factor",
-"PANEL": "integer",
-"group": "character" 
+"PANEL": "integer" 
 },
 "chunk_order": [],
 "nest_order": [
- "showSelectedlegendcolour" 
+ "showSelectedlegendcolour",
+"group" 
 ],
 "subset_order": [
  "showSelectedlegendcolour" 
@@ -106,6 +108,7 @@
  "x": "toss",
 "y": "cumulative",
 "colour": "result",
+"group": "result",
 "showSelectedlegendcolour": "result",
 "showSelected1": "toss" 
 },
@@ -133,6 +136,40 @@
 "subset_order": [
  "showSelected1",
 "showSelectedlegendcolour" 
+],
+"chunks": 1,
+"total": 1 
+},
+"geom5_tallrect_cumulative": {
+ "geom": "tallrect",
+"classed": "geom5_tallrect_cumulative",
+"aes": {
+ "xmin": "toss - 0.5",
+"xmax": "toss + 0.5",
+"showSelected1": "toss" 
+},
+"params": {
+ "na.rm": false,
+"na.rm": false,
+"alpha":      0.2,
+"showSelected": "toss" 
+},
+"types": {
+ "colour": "rgb",
+"x": "numeric",
+"xmin": "numeric",
+"xmax": "numeric",
+"y": "numeric",
+"showSelected1": "integer",
+"group": "character",
+"PANEL": "integer" 
+},
+"chunk_order": [],
+"nest_order": [
+ "showSelected1" 
+],
+"subset_order": [
+ "showSelected1" 
 ],
 "chunks": 1,
 "total": 1 
@@ -165,7 +202,8 @@
 "selected": "1",
 "levels": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" ],
 "update": [
- "geom4_point_cumulative" 
+ "geom4_point_cumulative",
+"geom5_tallrect_cumulative" 
 ] 
 } 
 },
@@ -255,7 +293,8 @@
       10,
       20,
       30,
-      40 
+      40,
+      50 
 ] 
 ] 
 } 
@@ -280,7 +319,8 @@
       30,
       35,
       40,
-      45 
+      45,
+      50 
 ] 
 ] 
 } 
@@ -304,16 +344,18 @@
       10,
       20,
       30,
-      40 
+      40,
+      50 
 ],
 "ylab": [
  "0",
 "10",
 "20",
 "30",
-"40" 
+"40",
+"50" 
 ],
-"yrange": [    -2.25,    47.25 ],
+"yrange": [     -2.4,     50.4 ],
 "yline": true,
 "yticks": true 
 },
@@ -337,7 +379,8 @@
 "10",
 "20",
 "30",
-"40" 
+"40",
+"50" 
 ],
 "title": "Coin Flip Frequencies",
 "title_size": "13.2pt",
@@ -355,7 +398,7 @@
 "legend": {
  "result": {
  "guide": "legend",
-"geoms": [ "path", "point" ],
+"geoms": [ "path", "point", "polygon" ],
 "title": "result",
 "class": "result",
 "selector": "result",
@@ -372,7 +415,12 @@
 "pointcolour": "#F8766D",
 "pointshape":       19,
 "pointsize":        2,
-"pointstroke":      0.5 
+"pointstroke":      0.5,
+"polygoncolour": "#F8766D",
+"polygonfill": "#595959",
+"polygonsize":      0.5,
+"polygonlinetype":        1,
+"polygonalpha":      0.2 
 },
 {
  "pathcolour": "#00BA38",
@@ -382,7 +430,12 @@
 "pointcolour": "#00BA38",
 "pointshape":       19,
 "pointsize":        2,
-"pointstroke":      0.5 
+"pointstroke":      0.5,
+"polygoncolour": "#00BA38",
+"polygonfill": "#595959",
+"polygonsize":      0.5,
+"polygonlinetype":        1,
+"polygonalpha":      0.2 
 },
 {
  "pathcolour": "#619CFF",
@@ -392,7 +445,12 @@
 "pointcolour": "#619CFF",
 "pointshape":       19,
 "pointsize":        2,
-"pointstroke":      0.5 
+"pointstroke":      0.5,
+"polygoncolour": "#619CFF",
+"polygonfill": "#595959",
+"polygonsize":      0.5,
+"polygonlinetype":        1,
+"polygonalpha":      0.2 
 } 
 ] 
 } 
@@ -445,9 +503,9 @@
 ],
 "y": [
  [
-     0.25,
-     0.5,
-    0.75,
+      0.4,
+     0.6,
+     0.8,
        1 
 ] 
 ] 
@@ -474,13 +532,12 @@
 ],
 "y": [
  [
-    0.125,
-    0.25,
-   0.375,
+      0.4,
      0.5,
-   0.625,
-    0.75,
-   0.875,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
        1 
 ] 
 ] 
@@ -501,22 +558,22 @@
 "75",
 "100" 
 ],
-"xrange": [    -3.95,   104.95 ],
+"xrange": [     -4.5,    105.5 ],
 "xline": true,
 "xticks": true,
 "y": [
-     0.25,
-     0.5,
-    0.75,
+      0.4,
+     0.6,
+     0.8,
        1 
 ],
 "ylab": [
- "0.25",
-"0.50",
-"0.75",
-"1.00" 
+ "0.4",
+"0.6",
+"0.8",
+"1.0" 
 ],
-"yrange": [    0.125, 1.041667 ],
+"yrange": [ 0.3482759, 1.031034 ],
 "yline": true,
 "yticks": true 
 },
@@ -538,10 +595,10 @@
 "100" 
 ],
 "ylabs": [
- "0.25",
-"0.50",
-"0.75",
-"1.00" 
+ "0.4",
+"0.6",
+"0.8",
+"1.0" 
 ],
 "title": "Cumulative Frequency Over Tosses",
 "title_size": "13.2pt",
@@ -551,7 +608,8 @@
 },
 "geoms": [
  "geom3_line_cumulative",
-"geom4_point_cumulative" 
+"geom4_point_cumulative",
+"geom5_tallrect_cumulative" 
 ] 
 } 
 } 

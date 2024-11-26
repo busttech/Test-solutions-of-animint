@@ -32,9 +32,11 @@ bar_plot <- ggplot(flip_data, aes(x = result, fill = result)) +
   labs(title = "Coin Flip Frequencies", x = "Face", y = "Count")
 
 # Line plot: Cumulative frequency over tosses (animated over toss)
-line_plot <- ggplot(flip_data, aes(x = toss, y = cumulative, color = result)) +
+# Line plot: Cumulative frequency over tosses (animated over toss, with tallrect for time selection)
+line_plot <- ggplot(flip_data, aes(x = toss, y = cumulative, color = result, group = result)) +
   geom_line(size = 1) +
-  geom_point(size = 2, showSelected = "toss") + # Use showSelected as a parameter
+  geom_point(size = 2, showSelected = "toss") + # Correct usage as a parameter
+  geom_tallrect(aes(xmin = toss - 0.5, xmax = toss + 0.5), alpha = 0.2, showSelected = "toss") + # Correct usage in tallrect
   labs(title = "Cumulative Frequency Over Tosses", x = "Toss Number", y = "Cumulative Frequency")
 
 # List of ggplots for animation
