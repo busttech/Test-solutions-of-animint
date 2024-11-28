@@ -4,21 +4,21 @@
  "geom": "rect",
 "classed": "geom1_bar_frequency",
 "aes": {
- "x": "result",
-"fill": "result",
-"showSelectedlegendfill": "result",
-"clickSelects": "toss" 
+ "x": "outcome",
+"y": "count",
+"fill": "outcome",
+"showSelectedlegendfill": "outcome",
+"showSelected1": "toss" 
 },
 "params": {
  "na.rm": false,
 "na.rm": false,
-"clickSelects": "toss" 
+"showSelected": "toss" 
 },
 "types": {
  "fill": "rgb",
-"count": "numeric",
-"prop": "numeric",
-"showSelectedlegendfill": "factor",
+"showSelectedlegendfill": "character",
+"showSelected1": "integer",
 "PANEL": "integer",
 "group": "character",
 "ymin": "numeric",
@@ -28,10 +28,12 @@
 },
 "chunk_order": [],
 "nest_order": [
- "showSelectedlegendfill" 
+ "showSelected1",
+"showSelectedlegendfill" 
 ],
 "subset_order": [
- "showSelectedlegendfill" 
+ "showSelected1",
+"showSelectedlegendfill" 
 ],
 "chunks": 1,
 "total": 1 
@@ -40,29 +42,34 @@
  "geom": "text",
 "classed": "geom2_text_frequency",
 "aes": {
- "label": "..count.." 
+ "x": "outcome",
+"y": "count",
+"label": "count",
+"showSelected1": "toss" 
 },
 "params": {
  "parse": false,
 "check_overlap": false,
 "na.rm": false,
 "na.rm": false,
-"vjust":     -0.5 
+"vjust":     -0.5,
+"showSelected": "toss" 
 },
 "types": {
- "fill": "rgb",
+ "x": "integer",
 "y": "numeric",
-"label": "numeric",
-"count": "numeric",
-"prop": "numeric",
-"x": "integer",
-"width": "numeric",
+"label": "integer",
+"showSelected1": "integer",
 "PANEL": "integer",
 "group": "character" 
 },
 "chunk_order": [],
-"nest_order": [],
-"subset_order": [],
+"nest_order": [
+ "showSelected1" 
+],
+"subset_order": [
+ "showSelected1" 
+],
 "chunks": 1,
 "total": 1 
 },
@@ -71,7 +78,7 @@
 "classed": "geom3_line_cumulative",
 "aes": {
  "x": "toss",
-"y": "cumulative",
+"y": "count_head/toss",
 "colour": "result",
 "group": "result",
 "showSelectedlegendcolour": "result" 
@@ -105,7 +112,7 @@
 "classed": "geom4_point_cumulative",
 "aes": {
  "x": "toss",
-"y": "cumulative",
+"y": "count_head/toss",
 "colour": "result",
 "group": "result",
 "showSelectedlegendcolour": "result",
@@ -168,42 +175,6 @@
 "subset_order": [],
 "chunks": 1,
 "total": 1 
-},
-"geom6_point_scatter": {
- "geom": "point",
-"classed": "geom6_point_scatter",
-"aes": {
- "x": "toss",
-"y": "cumulative",
-"colour": "result",
-"showSelectedlegendcolour": "result",
-"clickSelects": "toss" 
-},
-"params": {
- "na.rm": false,
-"na.rm": false,
-"size":        2,
-"clickSelects": "toss" 
-},
-"types": {
- "colour": "rgb",
-"x": "numeric",
-"y": "numeric",
-"showSelectedlegendcolour": "factor",
-"clickSelects": "integer",
-"PANEL": "integer",
-"fill": "rgb",
-"group": "character" 
-},
-"chunk_order": [],
-"nest_order": [
- "showSelectedlegendcolour" 
-],
-"subset_order": [
- "showSelectedlegendcolour" 
-],
-"chunks": 1,
-"total": 1 
 } 
 },
 "time": {
@@ -212,7 +183,18 @@
 "sequence": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" ] 
 },
 "selectors": {
- "result": {
+ "outcome": {
+ "type": "multiple",
+"legend": true,
+"is.variable.value": false,
+"showSelected": true,
+"selected": [ "count_head", "count_tail", "count_stand" ],
+"levels": [ "count_head", "count_tail", "count_stand" ],
+"update": [
+ "geom1_bar_frequency" 
+] 
+},
+"result": {
  "type": "multiple",
 "legend": true,
 "is.variable.value": false,
@@ -220,24 +202,22 @@
 "selected": [ "Head", "Tail", "Stand" ],
 "levels": [ "Head", "Tail", "Stand" ],
 "update": [
- "geom1_bar_frequency",
-"geom3_line_cumulative",
-"geom4_point_cumulative",
-"geom6_point_scatter" 
+ "geom3_line_cumulative",
+"geom4_point_cumulative" 
 ] 
 },
 "toss": {
  "is.variable.value": false,
 "type": "single",
-"clickSelects": true,
 "showSelected": true,
+"clickSelects": true,
 "selected": "1",
 "levels": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" ],
 "update": [
  "geom1_bar_frequency",
+"geom2_text_frequency",
 "geom4_point_cumulative",
-"geom5_tallrect_cumulative",
-"geom6_point_scatter" 
+"geom5_tallrect_cumulative" 
 ] 
 } 
 },
@@ -245,12 +225,12 @@
  "frequency": {
  "panel_margin_lines":     0.25,
 "legend": {
- "result": {
+ "outcome": {
  "guide": "legend",
 "geoms": "polygon",
-"title": "result",
-"class": "result",
-"selector": "result",
+"title": "outcome",
+"class": "outcome",
+"selector": "outcome",
 "is_discrete": true,
 "legend_type": "fill",
 "text_size": "8.8pt",
@@ -260,19 +240,19 @@
  "polygonfill": "#F8766D",
 "polygonsize":      0.5,
 "polygonlinetype":        1,
-"label": "Head" 
+"label": "count_head" 
 },
 {
  "polygonfill": "#00BA38",
 "polygonsize":      0.5,
 "polygonlinetype":        1,
-"label": "Tail" 
+"label": "count_stand" 
 },
 {
  "polygonfill": "#619CFF",
 "polygonsize":      0.5,
 "polygonlinetype":        1,
-"label": "Stand" 
+"label": "count_tail" 
 } 
 ] 
 } 
@@ -324,9 +304,7 @@
 "y": [
  [
         0,
-      10,
       20,
-      30,
       40 
 ] 
 ] 
@@ -344,15 +322,11 @@
 "y": [
  [
         0,
-       5,
       10,
-      15,
       20,
-      25,
       30,
-      35,
       40,
-      45 
+      50 
 ] 
 ] 
 } 
@@ -364,28 +338,24 @@
 3 
 ],
 "xlab": [
- "Head",
-"Tail",
-"Stand" 
+ "count_head",
+"count_tail",
+"count_stand" 
 ],
 "xrange": [      0.4,      3.6 ],
 "xline": true,
 "xticks": true,
 "y": [
         0,
-      10,
       20,
-      30,
       40 
 ],
 "ylab": [
  "0",
-"10",
 "20",
-"30",
 "40" 
 ],
-"yrange": [    -2.25,    47.25 ],
+"yrange": [     -2.8,     58.8 ],
 "yline": true,
 "yticks": true 
 },
@@ -400,15 +370,13 @@
 "yangle":        0,
 "yanchor": "end",
 "xlabs": [
- "Head",
-"Tail",
-"Stand" 
+ "count_head",
+"count_tail",
+"count_stand" 
 ],
 "ylabs": [
  "0",
-"10",
 "20",
-"30",
 "40" 
 ],
 "title": "Coin Flip Frequencies (Interactive)",
@@ -567,7 +535,8 @@
      0.3,
      0.4,
      0.5,
-     0.6 
+     0.6,
+     0.7 
 ] 
 ] 
 } 
@@ -602,7 +571,7 @@
 "0.4",
 "0.6" 
 ],
-"yrange": [ -0.03333333,      0.7 ],
+"yrange": [  -0.0375,   0.7875 ],
 "yline": true,
 "yticks": true 
 },
@@ -639,199 +608,6 @@
  "geom3_line_cumulative",
 "geom4_point_cumulative",
 "geom5_tallrect_cumulative" 
-] 
-},
-"scatter": {
- "panel_margin_lines":     0.25,
-"legend": {
- "result": {
- "guide": "legend",
-"geoms": "point",
-"title": "result",
-"class": "result",
-"selector": "result",
-"is_discrete": true,
-"legend_type": "colour",
-"text_size": "8.8pt",
-"title_size": "11pt",
-"entries": [
- {
- "pointcolour": "#F8766D",
-"pointshape":       19,
-"pointsize":        2,
-"pointstroke":      0.5,
-"label": "Head" 
-},
-{
- "pointcolour": "#00BA38",
-"pointshape":       19,
-"pointsize":        2,
-"pointstroke":      0.5,
-"label": "Tail" 
-},
-{
- "pointcolour": "#619CFF",
-"pointshape":       19,
-"pointsize":        2,
-"pointstroke":      0.5,
-"label": "Stand" 
-} 
-] 
-} 
-},
-"strips": {
- "top": [
- "" 
-],
-"right": [
- "" 
-],
-"n": {
- "top":        0,
-"right":        0 
-} 
-},
-"layout": {
- "PANEL": [ 1 ],
-"ROW": [ 1 ],
-"COL": [ 1 ],
-"SCALE_X": [ 1 ],
-"SCALE_Y": [ 1 ],
-"AXIS_X": [ true ],
-"AXIS_Y": [ true ],
-"coord_fixed": [ false ],
-"width_proportion": [        1 ],
-"height_proportion": [        1 ] 
-},
-"panel_background": {
- "fill": "#EBEBEB",
-"colour": "transparent",
-"size":      0.5,
-"linetype":        1 
-},
-"panel_border": [],
-"grid_major": {
- "colour": "#FFFFFF",
-"size":      0.5,
-"linetype":        1,
-"lineend": "butt",
-"loc": {
- "x": [
- [
-        0,
-      25,
-      50,
-      75,
-     100 
-] 
-],
-"y": [
- [
-        0,
-     0.2,
-     0.4,
-     0.6 
-] 
-] 
-} 
-},
-"grid_minor": {
- "colour": "#FFFFFF",
-"size":     0.25,
-"linetype":        1,
-"lineend": "butt",
-"loc": {
- "x": [
- [
-        0,
-    12.5,
-      25,
-    37.5,
-      50,
-    62.5,
-      75,
-    87.5,
-     100 
-] 
-],
-"y": [
- [
-        0,
-     0.1,
-     0.2,
-     0.3,
-     0.4,
-     0.5,
-     0.6 
-] 
-] 
-} 
-},
-"axis1": {
- "x": [
-        0,
-      25,
-      50,
-      75,
-     100 
-],
-"xlab": [
- "0",
-"25",
-"50",
-"75",
-"100" 
-],
-"xrange": [    -3.95,   104.95 ],
-"xline": true,
-"xticks": true,
-"y": [
-        0,
-     0.2,
-     0.4,
-     0.6 
-],
-"ylab": [
- "0.0",
-"0.2",
-"0.4",
-"0.6" 
-],
-"yrange": [ -0.03333333,      0.7 ],
-"yline": true,
-"yticks": true 
-},
-"xtitle": "Toss Number",
-"strip_text_xsize": "11pt",
-"xsize": "11pt",
-"xangle":        0,
-"xanchor": "middle",
-"ytitle": "Cumulative Frequency",
-"strip_text_ysize": "11pt",
-"ysize": "11pt",
-"yangle":        0,
-"yanchor": "end",
-"xlabs": [
- "0",
-"25",
-"50",
-"75",
-"100" 
-],
-"ylabs": [
- "0.0",
-"0.2",
-"0.4",
-"0.6" 
-],
-"title": "Scatterplot: Toss vs Cumulative Frequency",
-"title_size": "13.2pt",
-"options": {
- "width":      400,
-"height":      400 
-},
-"geoms": [
- "geom6_point_scatter" 
 ] 
 } 
 } 
