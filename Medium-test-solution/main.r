@@ -1,4 +1,4 @@
-# Load necessary libraries
+# Load necessary libraries 
 library(ggplot2)
 library(animint2)
 library(dplyr)
@@ -17,21 +17,21 @@ flip_data <- data.frame(
 )
 
 # Step 3: Calculate cumulative counts for each face
-flip_data <- flip_data %>%
-  mutate(count_head = cumsum(result == "Head"),
-         count_tail = cumsum(result == "Tail"),
-         count_stand = cumsum(result == "Stand"))
+flip_data <- flip_data %>% 
+  mutate(HEAD = cumsum(result == "Head"),
+         TAIL = cumsum(result == "Tail"),
+         STAND = cumsum(result == "Stand"))
 
-# Step 4: Set result column to be a factor with specified order (Head, Tail, Stand)
+# Step 4: Reshape data to long format for counting purposes
+flip_data_long <- flip_data %>% 
+  pivot_longer(cols = c("HEAD", "TAIL", "STAND"), 
+               names_to = "outcome", 
+               values_to = "count") %>% 
+  mutate(outcome = factor(outcome, levels = c("HEAD", "TAIL", "STAND"))) 
+
 flip_data$result <- factor(flip_data$result, levels = c("Head", "Tail", "Stand"))
 
-# Step 5: Reshape data to long format for counting purposes
-flip_data_long <- flip_data %>%
-  pivot_longer(cols = starts_with("count"), 
-               names_to = "outcome", 
-               values_to = "count")
-
-# Step 6: Create an animated bar plot for the frequency of outcomes
+# Step 5: Create an animated bar plot for the frequency of outcomes
 bar_plot <- ggplot(flip_data_long) +
   geom_bar(aes(x = outcome, y = count, fill = outcome), 
            stat = "identity", 
@@ -43,25 +43,31 @@ bar_plot <- ggplot(flip_data_long) +
   labs(title = "Coin Flip Frequencies (Interactive)", 
        x = "Face", 
        y = "Count") +
-  scale_x_discrete(limits = c("count_head", "count_tail", "count_stand"), 
-                   labels = c("count_head", "count_tail", "count_stand"))
+  scale_x_discrete(labels = c("Head", "Tail", "Stand")) +  # Set the x-axis labels
+  scale_fill_manual(values = c("HEAD" = "red", 
+                               "TAIL" = "green", 
+                               "STAND" = "blue")) +  # Update color mapping
+  guides(fill = "none")  # Remove the "outcome" legend
 
-# Step 7: Create the line plot for cumulative frequency
-line_plot <- ggplot(flip_data, aes(x = toss, y = count_head / toss, color = result, group = result)) +
+# Step 6: Create a line plot for cumulative frequencies over tosses
+line_plot <- ggplot(flip_data, aes(x = toss, y = HEAD / toss, color = result, group = result)) +
   geom_line(size = 1) +
   geom_point(size = 2, showSelected = "toss") +
   geom_tallrect(aes(xmin = toss - 0.5, xmax = toss + 0.5), alpha = 0.2, clickSelects = "toss") +
   labs(title = "Cumulative Frequency Over Tosses (Interactive)", 
        x = "Toss Number", 
-       y = "Cumulative Frequency")
+       y = "Cumulative Frequency") +
+  scale_color_manual(values = c("Head" = "red", 
+                                "Tail" = "green", 
+                                "Stand" = "blue"))
 
-# Step 8: Combine bar plot and line plot into a list for animation
+# Step 7: Compile the plots into a list
 plots <- list(
   frequency = bar_plot,         
   cumulative = line_plot,       
   time = list(variable = "toss", ms = 200)
 )
 
-# Step 9: Save the animation to a directory
+# Step 8: Save the animation to a directory
 animint2dir(plots, out.dir = "coin_flip_animation")
 
