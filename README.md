@@ -6,3 +6,6 @@ In this test we had converted the animation package in animint ,<br>
 The animation package I had use is <a href = "https://yihui.org/animation/example/flip-coin/">flip coin probability</a>.<br>
 I had created two graphs first one  is bargraph which showes the Coin Flip Frequencies and another one is Lineplot which  showes the Cumulative Frequency Over Tosses and used time variable as toss.<br>
 To view the Visualization of the code <a href = "https://github.com/busttech/Test-solutions-of-animint/blob/main/Medium-test-solution/main.r">main.r</a> click on the following link  --> https://busttech.github.io/deploy2/
+<h1><a href= "https://github.com/animint/animint2/pull/176">Hard Test Solution</a> </h1>
+Added pr on animint2 github
+video of the submission --> https://youtu.be/Gog2Sv7t_cE
